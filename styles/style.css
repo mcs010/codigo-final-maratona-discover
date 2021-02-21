@@ -96,14 +96,20 @@ a:hover{
 
 /* HEADER ----------------------------------------------------------------*/
 header{
-    background: #eba510;
+    background: #10e4eb;
     padding: 2rem 0 10rem;
     text-align: center;
 }
 
-#logo{
-    color: #fff;
-    font-weight: 100;
+header .lg-flags{
+    position: relative;
+    align-items: left;
+    width: 10px;
+    height: 8px;
+}
+
+a{
+    text-decoration: none;
 }
 
 /* BALANCE ----------------------------------------------------------------*/

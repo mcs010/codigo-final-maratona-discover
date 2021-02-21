@@ -4,13 +4,13 @@ function Modal() {
     status.toggle('active'); //Verify if the class already exists, if so, removes it, if not add it
 }
 
-const Storage ={
-    get(){
+const Storage = {
+    get() {
         // Transforms the string back to array and gets it (if it's blank, gets a empty array)
         return JSON.parse(localStorage.getItem("dev.finances:transactions")) || []
     },
 
-    set(transactions){
+    set(transactions) {
         // Transforms the array into string and storages it at Local Storage with key : value binding
         localStorage.setItem("dev.finances:transactions", JSON.stringify(transactions))
     }
@@ -141,10 +141,16 @@ const Utils = {
         const signal = Number(value) < 0 ? "-" : "" // Storages the signal of the number
         value = String(value).replace(/\D/g, "") // Removes special characters
         value = Number(value) / 100 // Divides by 100 to return to the normal value (all numers are multiplied by 100)
-        value = value.toLocaleString("pt-BR", {
-            style: "currency",
-            currency: "BRL"
-        })
+
+        // Changes local currency according to page language
+        let lang = document.querySelector('html').getAttribute('lang')
+        if (lang == 'en-us') {
+            value = value.toLocaleString("en-us", { style: "currency", currency: "USD" })
+        } else {
+            value = value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
+        }
+
+
         return signal + value
     }
 }
